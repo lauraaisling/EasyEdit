@@ -231,8 +231,8 @@ if __name__ == '__main__':
 
         ## mete training for MEND (You can set the meta-training hyperparameters in the EasyEdit/hparams/MEND/xxx.yaml file.)
         meta_training_hparams = MENDTrainingHparams.from_hparams(args.hparams_MENDtraining_dir)
-        train_ds = SafetyDataset('../data/SafeEdit_train.json', config=meta_training_hparams)
-        eval_ds = SafetyDataset('../data/SafeEdit_val.json', config=meta_training_hparams)
+        train_ds = SafetyDataset('./data/SafeEdit_train.json', config=meta_training_hparams)
+        eval_ds = SafetyDataset('./data/SafeEdit_val.json', config=meta_training_hparams)
         trainer = EditTrainer(
             config=meta_training_hparams,
             train_set=train_ds,
