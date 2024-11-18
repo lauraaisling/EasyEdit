@@ -201,6 +201,8 @@ if __name__ == '__main__':
         editing_hparams = MENDHyperParams
     elif args.editing_method == 'DINM':
         editing_hparams = DINMHyperParams
+    elif args.editing_method == 'test_gen':
+        editing_hparams = DINMHyperParams
     else:
         raise NotImplementedError
     output_dir = f'{args.metrics_save_dir}/{args.editing_method}_{args.edited_model}.json'
