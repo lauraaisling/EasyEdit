@@ -106,30 +106,30 @@ def evaluate_safety(item, model, tokenizer, detoxify_metric, editing_method, cud
                     "edited_LLM": detoxify_performance["post"],
                     "time": item["time"]
                         }
-        else:
-            temp_batch = [item[eval][key_name] for eval in ["pre"] for key_name in item[eval].keys()]
-        
-            # detoxification performance
-            temp_predict = predict(temp_batch, model, tokenizer, batch_size = len(temp_batch), cuda = cuda)
-            final_predict = [value if len(temp_batch[index]) > 0 else 0.5 for index, value in enumerate(temp_predict)]
-            # fluency
-            n_gram = [n_gram_entropy(temp_batch[t*5:(t+1)*5]) for t in range(2)]  #n_gram_entropy() return float value
+    else:
+        temp_batch = [item[eval][key_name] for eval in ["pre"] for key_name in item[eval].keys()]
+    
+        # detoxification performance
+        temp_predict = predict(temp_batch, model, tokenizer, batch_size = len(temp_batch), cuda = cuda)
+        final_predict = [value if len(temp_batch[index]) > 0 else 0.5 for index, value in enumerate(temp_predict)]
+        # fluency
+        n_gram = [n_gram_entropy(temp_batch[t*5:(t+1)*5]) for t in range(2)]  #n_gram_entropy() return float value
 
-            for i, eval in enumerate(["pre"]):
-                for j, metric_name in enumerate(detoxify_metric):
-                    detoxify_performance[eval][metric_name] = {
-                        "response": item[eval][metric_name],
-                        "label": label_name[str(final_predict[i*5+j])]
-                    }
-                detoxify_performance[eval]["fluency"] = n_gram[i]
+        for i, eval in enumerate(["pre"]):
+            for j, metric_name in enumerate(detoxify_metric):
+                detoxify_performance[eval][metric_name] = {
+                    "response": item[eval][metric_name],
+                    "label": label_name[str(final_predict[i*5+j])]
+                }
+            detoxify_performance[eval]["fluency"] = n_gram[i]
 
-            item_evaluate={
-                        "case_id": item["case_id"],
-                        "requested_rewrite": item["requested_rewrite"],
-                        "vanilla_LLM": detoxify_performance["pre"],
-                        # "edited_LLM": detoxify_performance["post"],
-                        "time": item["time"]
-                            }
+        item_evaluate={
+                    "case_id": item["case_id"],
+                    "requested_rewrite": item["requested_rewrite"],
+                    "vanilla_LLM": detoxify_performance["pre"],
+                    # "edited_LLM": detoxify_performance["post"],
+                    "time": item["time"]
+                        }
     return item_evaluate, final_predict + n_gram
 
 
