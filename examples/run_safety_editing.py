@@ -226,13 +226,14 @@ if __name__ == '__main__':
     editor = SafetyEditor.from_hparams(hparams)
     # edit_data_all = edit_data_all[0:2]
     if args.editing_method == "DINM":
-        overall_performance = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
+        overall_performance, final_model = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
+        final_model.save_pretrained(args.ckpt_save_dir)
     elif args.editing_method == "MEND":
 
         ## mete training for MEND (You can set the meta-training hyperparameters in the EasyEdit/hparams/MEND/xxx.yaml file.)
         meta_training_hparams = MENDTrainingHparams.from_hparams(args.hparams_MENDtraining_dir)
-        train_ds = SafetyDataset('./data/SafeEdit_train.json', config=meta_training_hparams)
-        eval_ds = SafetyDataset('./data/SafeEdit_val.json', config=meta_training_hparams)
+        train_ds = SafetyDataset('../data/SafeEdit_train.json', config=meta_training_hparams)
+        eval_ds = SafetyDataset('../data/SafeEdit_val.json', config=meta_training_hparams)
         trainer = EditTrainer(
             config=meta_training_hparams,
             train_set=train_ds,
@@ -242,9 +243,7 @@ if __name__ == '__main__':
         print('the hyper-network checkpoint of meta_training is saved at: EasyEdit/examples/results/models/MEND')
 
         # test MEND
-        overall_performance = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
-
-        overall_performance, final_model = test_DINM(edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
+        overall_performance, final_model = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
         final_model.save_pretrained(args.ckpt_save_dir)
     else:
         print("This method is currently not supported")
