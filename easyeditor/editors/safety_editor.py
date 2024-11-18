@@ -219,6 +219,8 @@ class SafetyEditor:
                     LOG.info(
                         f"{i} editing: {request['prompt']} -> {request['target_new']}  \n {all_metrics[i]}"
                     )
+        elif editing_method == "test_gen":
+            print("testing generalisation")
         else:
             for i, request in enumerate(requests):
                 start = time()
