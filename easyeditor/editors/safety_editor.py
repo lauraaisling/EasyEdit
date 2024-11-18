@@ -221,6 +221,7 @@ class SafetyEditor:
                     )
         elif editing_method == "test_gen":
             print("testing generalisation")
+            edited_model = self.model
         else:
             for i, request in enumerate(requests):
                 start = time()
