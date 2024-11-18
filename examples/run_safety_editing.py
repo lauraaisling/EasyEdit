@@ -175,10 +175,7 @@ def test_detoxification(editing_method, edit_data_all, editor, hparams, safety_c
         # edited_model.save_pretrained('test') # lom testtttt
 
 
-        for item in metrics:
-            print("start test")
-            print(item)
-            print("end test")
+        for item in metrics: ###
             item_evaluate,  evaluate_value = evaluate_safety(item, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, cuda = hparams.device)
             write_json(f'{output_dir}', item_evaluate, case_id = case_id, data_all = len(edit_data_all))
             overall_performance.append(evaluate_value)
@@ -248,6 +245,9 @@ if __name__ == '__main__':
         # test MEND
         overall_performance, final_model = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
         final_model.save_pretrained(args.ckpt_save_dir)
+    elif args.editing_method == "test_gen":
+        print("test generalisation")
+        overall_performance, final_model = test_detoxification(args.editing_method, edit_data_all, editor, hparams, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, output_dir)
     else:
         print("This method is currently not supported")
         
