@@ -176,6 +176,9 @@ def test_detoxification(editing_method, edit_data_all, editor, hparams, safety_c
 
 
         for item in metrics:
+            print("start test")
+            print(item)
+            print("end test")
             item_evaluate,  evaluate_value = evaluate_safety(item, safety_classifier_model, safety_classifier_tokenizer, detoxify_metric, cuda = hparams.device)
             write_json(f'{output_dir}', item_evaluate, case_id = case_id, data_all = len(edit_data_all))
             overall_performance.append(evaluate_value)
