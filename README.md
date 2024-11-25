@@ -59,7 +59,7 @@
 
 ## 🔔News
 
-- 2024-11-19, we will update the Table 4 results in the paper "[A Comprehensive Study of Knowledge Editing for Large Language Models](https://arxiv.org/abs/2401.01286)" after optimizing certain methods (related to AdaLoRA) and fixing computational bugs (related to ROME and MEMIT) in the EasyEdit (More details in https://github.com/zjunlp/EasyEdit/issues/427). These improvements have led to better results than before. We will continue updating this paper and welcome everyone to discuss and exchange ideas.
+- 2024-11-19, we update the Table 4 results in the paper "[A Comprehensive Study of Knowledge Editing for Large Language Models](https://arxiv.org/abs/2401.01286)" after optimizing certain methods (related to AdaLoRA) and fixing computational bugs (related to ROME and MEMIT) in the EasyEdit (More details in https://github.com/zjunlp/EasyEdit/issues/427). These improvements have led to better results than before. We will continue updating this paper and welcome everyone to discuss and exchange ideas.
 - 2024-11-11, 🎉🎉the paper on model editing for LLMs4Code, "[Model Editing for LLMs4Code: How Far are We?](https://arxiv.org/abs/2411.06638)", has been accepted by ICSE 2025! This work proposes a benchmark for LLMs4Code editing, [CLMEEval](https://github.com/xpq-tech/code-llmedit), which is built upon EasyEdit!
 - 2024-11-09, we fixed a bug regarding the [KnowEdit](https://huggingface.co/datasets/zjunlp/KnowEdit) results in the https://github.com/zjunlp/EasyEdit/issues/390. Thanks for the help of [@StarLooo](https://github.com/StarLooo) to help us with it. 
 - 2024-10-24, EasyEdit has added two new knowledge editing methods, [AlphaEdit](https://github.com/zjunlp/EasyEdit/blob/main/easyeditor/models/alphaedit/README.md). In addition, we have fixed several bugs.
@@ -132,7 +132,10 @@
 
 ## Editing Demo
 
-There is a demonstration of editing. The GIF file is created by [Terminalizer](https://github.com/faressoft/terminalizer).
+There is a demonstration of editing. The GIF file is created by [Terminalizer](https://github.com/faressoft/terminalizer). <br>
+
+We provide a handy [Jupyter Notebook](https://github.com/zjunlp/EasyEdit/blob/main/tutorial-notebooks/EasyEdit_Example_US_President.ipynb)! It allows you to edit a LLM's knowledge of the US president, switching from Biden to Trump and even back to Biden. This includes methods like [WISE](https://arxiv.org/abs/2405.14768), [AlphaEdit](https://arxiv.org/abs/2410.02355), AdaLoRA, and Prompt-based editing.
+
 
 <img src="figs/demo_usage_new.gif" width="550" height="470" align=center>
 
@@ -303,7 +306,7 @@ You can choose different editing methods according to your specific needs.
 
 > ❗️❗️ If you intend to use Mistral, please update the `transformers` library to version 4.34.0 manually. You can use the following code: `pip install transformers==4.34.0`.
 
-#### Quick Start on Some Work Designed by Our Team
+#### Quick Start on Some Works
 
 | **Work** | Description |    Path   |
 | :--------: | :---------: | :-------: |
