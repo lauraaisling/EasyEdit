@@ -4,6 +4,8 @@
 
 **An Easy-to-use Knowledge Editing Framework for Large Language Models.**
 
+This is the main README.md from the authors, a README.md for extra experiments is included in the folder la_scripts/
+
 ![](https://img.shields.io/badge/version-v0.0.1-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![Static Badge](https://img.shields.io/badge/last_commit-May-blue)
