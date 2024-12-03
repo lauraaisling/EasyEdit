@@ -1,13 +1,13 @@
 # Model
 
-archive: ./results/models/MEND/llama3.2-3b-ZsRE
+archive: ./safety_results/models/MEND/llama3.2-3b-SafeEdit
 alg_name: "MEND"
 device: 1
-model_name: ./hugging_cache/llama3.2-3b
+model_name: meta-llama/llama3.2-3b-Instruct
 
 model_class: LlamaForCausalLM
 tokenizer_class: LlamaTokenizer
-tokenizer_name: ./hugging_cache/llama3.2-3b
+tokenizer_name: meta-llama/Llama-3.2-3B
 model_parallel: false
 inner_params:
 - model.layers.25.mlp.gate_proj.weight

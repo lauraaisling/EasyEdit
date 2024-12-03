@@ -1,5 +1,5 @@
 alg_name: 'DINM'
-model_name: "\lama-2-7b-hf"  # the vanilla LLM path
+model_name: "safety_results/models/llama-7b-DINM-wo-bias"  # the edited LLM path
 model_class: LlamaForCausalLM
 tokenizer_class: LlamaTokenizer
 device: 0
